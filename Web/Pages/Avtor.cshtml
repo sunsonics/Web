@@ -1,0 +1,40 @@
+﻿@page
+@model Web.Pages.AvtorModel
+@{
+    ViewData["Title"] = "Восстановление пароля";
+    var step = ViewBag.Step as int? ?? 1;  
+}
+
+<h2>Восстановление пароля</h2>
+
+@if (step == 1)
+{
+    
+    <form asp-action="SendCode" method="post">
+        <div>
+            <label for="login">Введите ваш логин (email):</label>
+            <input type="text" id="login" name="login" required />
+        </div>
+        <button type="submit">Отправить код</button>
+    </form>
+}
+else if (step == 2)
+{
+    
+    <form asp-action="ConfirmCode" method="post">
+        <div>
+            <label for="code">Введите код подтверждения:</label>
+            <input type="text" id="code" name="code" required />
+        </div>
+        <button type="submit">Готово</button>
+    </form>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color: red;">@ViewBag.ErrorMessage</p>
+}
+@if (ViewBag.SuccessMessage != null)
+{
+    <p style="color: green;">@ViewBag.SuccessMessage</p>
+}

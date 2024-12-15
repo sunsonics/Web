@@ -1,0 +1,119 @@
+﻿@page
+@model Web.Pages.AdminModel
+@{
+    ViewData["Title"] = "Панель администратора";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 20px;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    h3 {
+        color: #333;
+        margin-top: 30px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f1f1f1;
+        color: #555;
+    }
+
+    tr:hover {
+        background-color: #f9f9f9;
+    }
+</style>
+
+<h2>Панель администратора</h2>
+
+<h3>Пользователи</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Логин</th>
+            <th>Пароль</th>
+            <th>Роль</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.ID</td>
+                <td>@user.Login</td>
+                <td>@user.Password</td>
+                <td>@user.role</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Заказы</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Пользователь</th>
+            <th>Товар</th>
+            <th>Количество</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>@order.ID</td>
+                <td>@order.User_id</td>
+                <td>@order.Goods_id</td>
+                <td>@order.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Товары</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>В наличии</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var goods in Model.Goods)
+        {
+            <tr>
+                <td>@goods.ID</td>
+                <td>@goods.Name</td>
+                <td>@goods.Description</td>
+                <td>@goods.In_stock</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
